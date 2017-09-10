@@ -12,23 +12,23 @@
 		header("Location:admin.php"); 
 	}	
 	
-	// Handle the click on button Login 
+	/ Handle the click on button Login 
 	if(isset($_POST['button-login'])) {
 		
 		//Database connection configuration
-		$connection = mysqli_connect("localhost","root","tr*baV4S","cos108");
+		$connection = mysqli_connect("127.0.0.1","root","tr*baV4S/?","test");
 		
-		// username and password sent from form 	  
+		// username and password in forms
 		$myusername = mysqli_real_escape_string($connection,$_POST['username']);
 		$mypassword = mysqli_real_escape_string($connection,$_POST['password']); 
 		  
-		$query = "SELECT username FROM login WHERE username = '$myusername' and password = '$mypassword'";
+		$query = "SELECT email FROM login WHERE email = '$myusername' AND password = '$mypassword'";
 		$result_set = mysqli_query($connection,$query);
 		
 		//Count the number of rows from the result set
 		$count = mysqli_num_rows($result_set);
 
-		// If result matched $myusername and $mypassword, table row must be 1 row			
+		// If result matched $myusername and $mypassword, result must contains 1 row of data			
 		if($count == 1) {
 			$_SESSION['login_user'] = $myusername; // Initializing Session		
 			//Check if the session exists
@@ -41,7 +41,7 @@
 					'window.location = "http://localhost/admin.php"',
 					'</script>';
 			}		
-		}else {
+		}else { // if no matched results
 			$error = "Your Login Name or Password is invalid";
 		}	  
     }// End of 'if(isset($_POST['button-login']))'
@@ -52,7 +52,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Admin Login</title>
-	<link rel="stylesheet" type="text/css" href="css/style-login.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
 	
 	<!-- This script is used to handle the emptiness of the username/password input box -->

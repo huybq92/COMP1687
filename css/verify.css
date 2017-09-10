@@ -35,7 +35,7 @@ body {
   -moz-osx-font-smoothing: grayscale;      
 }
 
-.login {
+.verify {
   width: 400px;
   margin: 16px auto;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -44,27 +44,27 @@ body {
   font-size: 15px;
 }
 
-.login p {
+.verify p {
   padding: 14px;
   margin: 1px auto;
 }
 
-.login .message {
-  color: #b3b3b3;
+.verify .message {
+  color: #000;
   font-size: 14px;
 }
-.login .message a {
+.verify .message a {
   color: #4CAF50;
   text-decoration: none;
 }
 
-.login span {
+.verify span {
   padding: 14px;
   color: red;
   font-size: 13px;
 }
 
-.login input {
+.verify input {
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -76,23 +76,12 @@ body {
   font-size: 0.95em;
   background: #fff;
   border-color: #bbb;
-  color: #555;
-}
-
-.login input[type="email"],
-.login input[type="password"] {
-  background: #fff;
-  border-color: #bbb;
   color: #000;
+  text-align: center;
 }
 
-/* Text fields' focus effect */
-.login input[type="email"]:focus,
-.login input[type="password"]:focus {
-  border-color: #888;
-}
-
-.login input[type="submit"], .login input[type="submit"]:focus {
+.verify input[type="submit"],
+.verify input[type="submit"]:focus {
   background: #43A047;
   border-color: transparent;
   color: #fff;

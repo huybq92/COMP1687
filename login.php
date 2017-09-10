@@ -2,45 +2,48 @@
 	// Starting Session
 	session_start();
 	
-	//Because 'error' variable is being called inside HTML code, so it must be set here
+	//Because 'error' variable is being called inside HTML code, so it must be set here first
 	$error="";
 	
-	//Check if $_SESSION['login_user'] is already set. If yes, redirect to admin.php
+	//Check if $_SESSION['login_user'] is already set. If yes, redirect to main.php
 	if(isset($_SESSION['login_user'])) {
-		header("Location:admin.php"); 
+		header("Location:verify.php"); 
 	}	
 	
-	// Handle the click on button Login 
+	// Handle the click on button Login
 	if(isset($_POST['button-login'])) {
 		
 		//Database connection configuration
-		$connection = mysqli_connect("localhost","root","tr*baV4S","cos108");
+		$connection = mysqli_connect("127.0.0.1","root","tr*baV4S/?","test");
 		
-		// username and password sent from form 	  
+		// username and password in forms
 		$myusername = mysqli_real_escape_string($connection,$_POST['username']);
 		$mypassword = mysqli_real_escape_string($connection,$_POST['password']); 
 		  
-		$query = "SELECT username FROM login WHERE username = '$myusername' and password = '$mypassword'";
+		$query = "SELECT status FROM login WHERE username = '$myusername' AND password = aes_encrypt('$mypassword','testkey');";
 		$result_set = mysqli_query($connection,$query);
 		
 		//Count the number of rows from the result set
 		$count = mysqli_num_rows($result_set);
 
-		// If result matched $myusername and $mypassword, table row must be 1 row			
+		// If result matched $myusername and $mypassword, there must be 1 row			
 		if($count == 1) {
-			$_SESSION['login_user'] = $myusername; // Initializing Session		
-			//Check if the session exists
-			if(isset($_SESSION['login_user'])) {
-				//close connection
-				mysqli_close($connection);
-				
-				//header("location: http://localhost/admin.php", true, 301); // Redirecting To Other Page
-				echo '<script type="text/javascript">',
-					'window.location = "http://localhost/admin.php"',
+			// Initializing Session
+			$_SESSION['login_user'] = $myusername;		
+
+			// Close MySQL connection
+			mysqli_close($connection);
+			
+			// REDIRECT TO verify.php
+			//header("location: http://localhost/main.php", true, 301); 
+			echo '<script type="text/javascript">',
+					'window.location = "http://localhost/verify.php"',
 					'</script>';
-			}		
-		}else {
-			$error = "Your Login Name or Password is invalid";
+		} 
+
+		// $count != 1 => no match
+		else {
+			$error = "<span> Email or Password is incorrect !</span>";
 		}	  
     }// End of 'if(isset($_POST['button-login']))'
 ?>
@@ -49,8 +52,8 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Admin Login</title>
-	<link rel="stylesheet" type="text/css" href="css/style-login.css">
+    <title>Login Page</title>
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 	<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
 	
 	<!-- This script is used to handle the emptiness of the username/password input box -->
@@ -60,7 +63,7 @@
 			var y = document.forms["login-form"]["password"].value;
 			if (x == "" || y == "") {
 				<!-- Alert user -->
-				alert("Username & password cannot be empty!");
+				alert("Email & password cannot be empty!");
 				return false;
 			}
 		}
@@ -69,29 +72,31 @@
  
 <body>
 	<header>
-		<div style="text-align: center;">
+		<div class="container">
 			<a href="/"><img src = "img/tmc-logo2.png" alt = "TMC logo" /></a>
 		</div>
 	</header>	
-		<div class="container">
-			<div class="login-page">
-			  <div class="form">
-				<form class="login-form" name="login-form" action="" method="post" onsubmit="return validateForm()">
-				    <input type="text" placeholder="username" name="username"/>
-				    <input type="password" placeholder="password" name="password"/>
-				    <span style="color: red"><?php echo $error; ?></span>
-				    <button type="submit" name="button-login">login</button>
-				    <p class="message">Not registered? <a href="/register.php">Create an account</a></p>			  
-				</form>
-			  </div>
-			</div>
+
+	<div class="container">
+		<div class="login">
+			<form name="login-form" action="" method="post" onsubmit="return validateForm()">	  	
+			    <p><input type="textinput" placeholder="username" name="username" maxlength="50"></p>
+			    <p><input type="password" placeholder="password" name="password" maxlength="50"></p>
+			    <?php echo $error; ?>
+			    <p><input type="submit" value="LOG IN" name="button-login"><p>
+			    <p class="message">Not registered? <a href="/register.php">Create an account</a></p>
+			</form>
 		</div>
+	</div>
+
 	<footer>
 		<div class="container">
-			<p>Copyright 2014, Bui Quang Huy. All rights reserved.</p>
-			<p><a href="#">Terms of Service</a> I <a href="#">Privacy</a></p>
+			<p><small>Copyright 2017, Bui Quang Huy. All rights reserved.</small></p>
+			<p><small><a href="#">Terms of Service</a> I <a href="#">Privacy</a></small></p>
 		<div class="clear"></div>
 		</div>
 	</footer>   
 </body>
 </html>
+
+<!-- Reference source code: https://codepen.io/miroot/pen/qwIgC  -->
