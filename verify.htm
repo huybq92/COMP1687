@@ -1,0 +1,57 @@
+<?php
+	require_once '/Library/WebServer/Documents/php/verify.php';
+?>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Verification Page</title>
+	<link rel="stylesheet" type="text/css" href="css/verify.css">
+	<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
+	<script src="script/verify.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="container">
+			<a href="/"><img src = "img/tmc-logo2.png" alt = "TMC logo" /></a>
+		</div>
+	</header>
+
+	<div class="container">
+		<div class="form">
+			<form name="verify-form" action="" method="post" onsubmit="return validateForm()">
+				<p class="message" style="text-align: center;"><strong>YOU NEED TO VERIFY YOUR EMAIL FIRST!</strong></p>
+			    <p><input
+			    	type="textinput"
+			    	placeholder="enter the code here"
+			    	onfocus="this.placeholder=''"
+			    	onblur="this.placeholder='enter the code here'"
+			    	name="verify-code"
+			    	maxlength="5"></p>
+			    <?php echo $inform; ?>
+			    <p><input
+			    	type="submit"
+			    	value="VERIFY EMAIL"
+			    	name="button-verify"><p>
+			    <p class="message">
+			    	<a style="cursor: pointer;" onclick="resendCode()">Resend</a> code,
+			    	<br>
+			    	...or go back to <a href="http://localhost/php/logout.php">Login Page</a>
+			    </p>
+			</form>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<p><small>Copyright 2017, Bui Quang Huy. All rights reserved.</small></p>
+			<p><small><a href="#">Terms of Service</a> I <a href="#">Privacy</a></small></p>
+		<div class="clear"></div>
+		</div>
+	</footer>
+</body>
+</html>
+
+<!-- Reference source code: https://codepen.io/miroot/pen/qwIgC  -->

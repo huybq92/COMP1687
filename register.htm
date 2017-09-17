@@ -1,0 +1,86 @@
+<?php
+	require_once '/Library/WebServer/Documents/php/register.php';
+?>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Registration Page</title>
+	<link rel="stylesheet" type="text/css" href="css/register.css">
+	<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
+	<script src="script/register.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="container">
+			<a href="/"><img src = "img/tmc-logo2.png" alt = "TMC logo" /></a>
+		</div>
+	</header>
+
+	<div class="container">
+		<div class="form">
+
+		<!-- Form -->
+		  <form name="register-form" action="" method="post" onsubmit="return validateForm()">
+		  	<span></span>
+		    <p><input
+		    	type="textinput"
+		    	placeholder="username"
+		    	onfocus="this.placeholder=''"
+			    onblur="this.placeholder='username'"
+		    	name="username"
+		    	maxlength="50"
+		    	required></p>
+		    <p><input
+		    	type="password"
+		    	placeholder="password"
+		    	onfocus="this.placeholder=''"
+			    onblur="this.placeholder='password'"
+		    	name="password"
+		    	maxlength="50"
+		    	required></p>
+		    <p><input
+		    	type="password"
+		    	placeholder="re-type password"
+		    	onfocus="this.placeholder=''"
+			    onblur="this.placeholder='re-type password'"
+		    	name="repassword"
+		    	maxlength="50"
+		    	required></p>
+		    <p><input
+		    	type="email"
+		    	placeholder="email"
+		    	onfocus="this.placeholder=''"
+			    onblur="this.placeholder='email'"
+		    	name="email"
+		    	maxlength="100"
+		    	required></p>
+
+		    <!-- captcha -->
+		    <!-- SOURCE CODE: http://www.the-art-of-web.com/php/captcha/ -->
+		    <p class="captcha">
+		    	<img src="php/captcha.php" width="120" height="30" border="1" alt="CAPTCHA">
+				<input type="textinput" maxlength="5" name="captcha" value="">
+				<small>copy the digits from the image into above box</small>
+			</p>
+
+			<!-- submit button-->
+			<?php echo $inform; ?>
+		    <p><input type="submit" value="CREATE ACCOUNT" name="button-register"></button><p>
+		    <p class="message">Already registered? <a href="/login.htm">Login now</a></p>
+		  </form>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<p><small>Copyright 2017, Bui Quang Huy. All rights reserved.</small></p>
+			<p><small><a href="#">Terms of Service</a> I <a href="#">Privacy</a></small></p>
+		<div class="clear"></div>
+		</div>
+	</footer>
+
+</body>
+</html>

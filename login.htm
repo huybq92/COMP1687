@@ -1,0 +1,57 @@
+<?php
+	require_once '/Library/WebServer/Documents/php/login.php';
+?>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Login Page</title>
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
+	<script src="script/login.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="container">
+			<a href="/"><img src = "img/tmc-logo2.png" alt = "TMC logo" /></a>
+		</div>
+	</header>
+
+	<div class="container">
+		<div class="form">
+			<form name="login-form" action="" method="post" onsubmit="return validateForm()">
+			    <p><input
+			    	type="textinput"
+			    	placeholder="username"
+			    	onfocus="this.placeholder=''"
+			    	onblur="this.placeholder='username'"
+			    	name="username"
+			    	maxlength="50"
+			    	required></p>
+			    <p><input
+			    	type="password"
+			    	placeholder="password"
+			    	onfocus="this.placeholder=''"
+			    	onblur="this.placeholder='password'"
+			    	name="password"
+			    	maxlength="50"
+			    	required></p>
+			    <?php echo $error; ?>
+			    <p><input type="submit" value="LOG IN" name="button-login"><p>
+			    <p class="message">Not registered? <a href="/register.htm">Create an account</a></p>
+			</form>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container">
+			<p><small>Copyright 2017, Bui Quang Huy. All rights reserved.</small></p>
+			<p><small><a href="#">Terms of Service</a> I <a href="#">Privacy</a></small></p>
+		<div class="clear"></div>
+		</div>
+	</footer>
+</body>
+</html>
+<!-- REFERENCE CODE: https://codepen.io/miroot/pen/qwIgC  -->

@@ -1,51 +1,22 @@
 <?php
+// Inside the below php file, I already created an object named '$connection'
+require_once '/Library/WebServer/Documents/php/class.CustomMySQLConnection.php';
+// Some functions to handle timeout requirements
+require_once '/Library/WebServer/Documents/php/functions.session.php';
 
-// Start Session
+// Get Session
 	session_start();
 
-	
-//#############################################################	
-//######### This part is to CHECK SESSION EXISTANCE.###########
-//######### If no session exists, redirect to login.php #######
-//######### If yes, check if account is active or inactive.####
-//######### - If inactive, redirect to verify.php #############
-
-	//Database connection configuration
-	$connection = mysqli_connect("127.0.0.1","root","tr*baV4S/?","test");
-	
-	// Storing Session
-	$user_check = $_SESSION['login_user'];
-	$query = "SELECT status FROM login WHERE username='$user_check'";
-
-	// SQL Query To Fetch Complete Information Of User
-	$result_set = mysqli_query($connection, $query);
-	
-	//This method return an array of result
-	$status = mysqli_fetch_assoc($result_set);
-	
-	//Get the value from the resultset
-	$login_session = $status['status'];
-	
-	//Check if there is no session exists. If no, then redirect to the login page
-	if(!isset($login_session)){
-		mysqli_close($connection); // Closing Connection
-		header('Location: http://localhost/login.php');
-	} else {
-		//Check if account is inactive. If so, redirect to the verify page
-		if ($status['status'] == false) {
-			header('Location: http://localhost/verify.php');
-		}
-	}
-//#############################################################
+	checkSessionLogin(); // check existant session and status code. Also check lifetime of session.
 ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
 </head>
- 
+
 <body>
-<h1>Login successfully!  Welcome, <i><?php echo $user_check; ?></i> </h1>
-<h2><a href="logout.php">Logout</h2>
+<h1>Login successfully!  Welcome, <i><?php echo $_SESSION['login_user']; ?></i> </h1>
+<h2><a href="http://localhost/php/logout.php">Logout</h2>
 </body>
 </html>

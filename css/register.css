@@ -1,82 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 @import url("default.css");
 
-/*Generic style*/
-body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-}
-
-.register {
-  width: 400px;
-  margin: 16px auto;
-  padding: 14px;
-  background: #ebebeb;
-  font-size: 15px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-
-.register p {
-  padding: 14px;
-  margin: 1px auto;
-}
-
-.register .captcha input {
+.form .captcha input {
   width: 122px;
   height: 30px;
   padding: 1px;
 }
 
-.register .message {
-  color: #b3b3b3;
-  font-size: 15px;
-}
-.register .message a {
-  color: #4CAF50;
-  text-decoration: none;
-}
-
-.register span {
-  padding: 14px;
-  color: red;
-  font-size: 13px;
-}
-
-.register input {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
-  padding: 16px;
-  outline: 0;
-  font-family: inherit;
-  font-size: 0.95em;
-  background: #fff;
-  border-color: #bbb;
-  color: #000;
-}
-
-.register input[type="email"]:focus,
-.register input[type="password"]:focus,
-.register input[type="textinput"]:focus {
-  border-color: #888;
-}
-
-.register input[type="submit"], .register input[type="submit"]:focus {
-  background: #43A047;
-  border-color: transparent;
-  color: #fff;
-  cursor: pointer;
-}
-
-.register.captcha {
+.form .captcha {
   display: inline-block !important;
 }
-

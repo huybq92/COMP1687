@@ -20,71 +20,8 @@
  * - no frameworks, preprocessors or resets
  */
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 @import url("default.css");
 
-/*Generic style*/
-body {
-  background: #76b852; /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
-}
-
-.verify {
-  width: 400px;
-  margin: 16px auto;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  background: #ebebeb;
-  padding: 14px;
-  font-size: 15px;
-}
-
-.verify p {
-  padding: 14px;
-  margin: 1px auto;
-}
-
-.verify .message {
-  color: #000;
-  font-size: 14px;
-}
-.verify .message a {
-  color: #4CAF50;
-  text-decoration: none;
-}
-
-.verify span {
-  padding: 14px;
-  color: red;
-  font-size: 13px;
-}
-
-.verify input {
-  box-sizing: border-box;
-  display: block;
-  width: 100%;
-  border-width: 1px;
-  border-style: solid;
-  padding: 16px;
-  outline: 0;
-  font-family: inherit;
-  font-size: 0.95em;
-  background: #fff;
-  border-color: #bbb;
-  color: #000;
+.form input {
   text-align: center;
 }
-
-.verify input[type="submit"],
-.verify input[type="submit"]:focus {
-  background: #43A047;
-  border-color: transparent;
-  color: #fff;
-  cursor: pointer;
-}
-
